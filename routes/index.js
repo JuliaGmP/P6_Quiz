@@ -5,13 +5,15 @@ const quizController = require('../controllers/quiz');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index');
+    res.render('index');
 });
 
 // Author page.
 router.get('/author', (req, res, next) => {
     res.render('author');
 });
+
+router.get('/play', quizController.random_play );
 
 
 // Autoload for routes using :quizId
@@ -27,8 +29,10 @@ router.get('/quizzes/:quizId(\\d+)/edit',  quizController.edit);
 router.put('/quizzes/:quizId(\\d+)',       quizController.update);
 router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
+router.get('/quizzes/randomcheck/:quizId', quizController.randomcheck);
+router.get('/quizzes/randomplay', quizController.random_play);
+
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-
 
 module.exports = router;
