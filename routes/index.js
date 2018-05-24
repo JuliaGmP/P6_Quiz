@@ -43,13 +43,15 @@ router.get([
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index');
+    res.render('index');
 });
 
 // Author page.
 router.get('/author', (req, res, next) => {
     res.render('author');
 });
+
+router.get('/play', quizController.random_play );
 
 
 // Autoload for routes using :quizId
@@ -116,6 +118,9 @@ router.delete('/quizzes/:quizId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
 	quizController.destroy);
+
+router.get('/quizzes/randomcheck/:quizId', quizController.randomcheck);
+router.get('/quizzes/randomplay', quizController.random_play);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
