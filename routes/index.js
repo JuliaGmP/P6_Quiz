@@ -119,6 +119,16 @@ router.delete('/quizzes/:quizId(\\d+)',
     quizController.adminOrAuthorRequired,
 	quizController.destroy);
 
+router.get('/quizzes/:quizId/tips/:tipId/edit',
+	sessionController.loginRequired,
+	tipController.adminOrAuthorRequired,
+	tipController.edit);
+router.put('/quizzes/:quizId/tips/:tipId',
+    sessionController.loginRequired,
+    tipController.adminOrAuthorRequired,
+    tipController.update);
+
+
 router.get('/quizzes/randomcheck/:quizId', quizController.randomcheck);
 router.get('/quizzes/randomplay', quizController.random_play);
 
